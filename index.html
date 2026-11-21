@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Darkroom · a theme for T3 Code</title>
+<meta name="description" content="A red-safelight darkroom theme for T3 Code. While your agent works, a print develops in the tray and a timer counts. When the turn ends, the print is fixed and everything holds still.">
+<meta name="theme-color" content="#170b0c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Darkroom · a theme for T3 Code">
+<meta property="og:description" content="Your agent works. The print comes up. A safelight-red theme that only moves while work is happening.">
+<meta property="og:url" content="https://joshsaintjacque.github.io/t3code-theme-darkroom/">
+<meta property="og:image" content="https://joshsaintjacque.github.io/t3code-theme-darkroom/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Darkroom · a theme for T3 Code">
+<meta name="twitter:description" content="Your agent works. The print comes up. A safelight-red theme that only moves while work is happening.">
+<meta name="twitter:image" content="https://joshsaintjacque.github.io/t3code-theme-darkroom/assets/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23170b0c'/%3E%3Ccircle cx='16' cy='16' r='9' fill='%23ff5a47'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23ffd9cc'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=DM+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --room:#120708; --canvas:#170b0c; --tray:#211011; --raised:#2c1517; --rim:#4a2326; --rim-soft:#2e1618;
+  --paper:#e6cfc3; --text:#f4e4dd; --muted:#c9a9a0; --faint:#a07d75;
+  --red:#ff5a47; --red-ink:#1a0707; --amber:#ffb347; --led:#ff4733;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --serif:"Newsreader","Iowan Old Style",Georgia,serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+  --pad:clamp(18px,4vw,56px); --maxw:1220px;
+  --spr:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='12'%3E%3Crect x='4' y='2' width='14' height='8' rx='2.4' fill='%23170b0c'/%3E%3C/svg%3E");
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--room);color:var(--text);font:400 18px/1.62 var(--serif);overflow-x:hidden;
+  background:
+    radial-gradient(ellipse 80% 46% at 85% -6%,rgba(255,64,40,.32),transparent 70%),
+    radial-gradient(ellipse 60% 40% at 0% 38%,rgba(255,64,40,.08),transparent 70%),
+    var(--room)}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.5;mix-blend-mode:screen;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 .42  0 0 0 0 .36  0 0 0 1.1 -.5'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E")}
+a{color:var(--amber);text-decoration-style:dotted;text-underline-offset:4px}
+a:hover{color:#ffd08a}
+::selection{background:rgba(255,90,71,.4)}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+img,video{display:block;max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.mono{font-family:var(--mono)}
+.eyebrow{font:500 12px/1.2 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.eyebrow b{color:var(--amber);font-weight:500}
+
+/* top bar */
+header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:26px 0 0}
+.mark{display:flex;align-items:center;gap:12px;font:800 15px/1 var(--display);font-stretch:112%;letter-spacing:.22em;color:var(--text);text-decoration:none}
+.lamp{width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 50% 45%,#ffd9cc 0 18%,var(--red) 40%,#7d1d14 100%);box-shadow:0 0 0 3px rgba(255,90,71,.18)}
+.top nav{display:flex;gap:22px;align-items:center}
+.top nav a{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.top nav a:hover{color:var(--text)}
+.top nav .gh{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--rim);padding:9px 12px;border-radius:6px;color:var(--text)}
+.top nav .gh:hover{border-color:var(--red);color:var(--text)}
+.top nav .gh svg{width:15px;height:15px;fill:currentColor}
+@media (max-width:640px){.top nav a:not(.gh){display:none}}
+
+/* hero */
+.hero{padding:clamp(40px,8vh,84px) 0 0}
+.word{margin:14px 0 0;font:900 clamp(36px,calc((min(100vw,1220px) - 2*var(--pad)) / 8.1),160px)/.86 var(--display);font-stretch:125%;letter-spacing:-.02em;text-transform:uppercase;color:var(--text);white-space:nowrap}
+.word span{display:inline-block;opacity:1}
+.js .word span{opacity:0;animation:up 2.4s ease-out forwards;animation-delay:calc(var(--i)*.28s)}
+@keyframes up{0%{opacity:0}35%{opacity:.35}100%{opacity:1}}
+.lede{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:end;margin-top:clamp(26px,4vh,44px)}
+.lede h1{margin:0;font:600 clamp(28px,3.7vw,46px)/1.1 var(--display);letter-spacing:-.01em;text-wrap:balance}
+.lede h1 em{font:italic 400 1.04em/1 var(--serif);color:var(--red)}
+.lede p{margin:0 0 20px;color:var(--muted);max-width:46ch;font-size:19px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;font:500 13px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:15px 20px;border-radius:6px;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .2s,border-color .2s}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--red);color:var(--red-ink);font-weight:500}
+.btn.primary:hover{background:#ff7664;color:var(--red-ink)}
+.btn.ghost{border-color:var(--rim);color:var(--text);background:rgba(33,16,17,.7)}
+.btn.ghost:hover{border-color:var(--red);color:var(--text)}
+.btn svg{width:14px;height:14px}
+@media (max-width:860px){.lede{grid-template-columns:minmax(0,1fr);align-items:start}}
+
+/* timer */
+.timer{display:inline-flex;align-items:center;gap:14px;margin-top:22px;padding:12px 16px;background:#0a0405;border:1px solid var(--rim);border-radius:10px}
+.timer .lbl{font:500 10px/1.4 var(--mono);letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.digits{display:flex;align-items:center;gap:5px}
+.digits svg{width:20px;height:29px}
+.digits .gh{fill:var(--red);fill-opacity:.08}
+.digits .lit{fill:var(--led)}
+.digits .col{width:5px;height:20px;display:flex;flex-direction:column;justify-content:space-between;padding:4px 0}
+.digits .col i{display:block;width:4px;height:4px;background:var(--led)}
+
+/* film frame */
+.film{position:relative;margin:clamp(40px,7vh,72px) 0 0;padding:26px 0;background:#080303;border:1px solid var(--rim-soft);border-radius:8px;box-shadow:0 50px 100px -40px rgba(0,0,0,.9),0 0 140px -40px rgba(255,64,40,.4)}
+.film:before,.film:after{content:"";position:absolute;left:0;right:0;height:12px;background:#4a2326;-webkit-mask:var(--spr) 0 0/22px 12px repeat-x;mask:var(--spr) 0 0/22px 12px repeat-x}
+.film:before{top:7px}.film:after{bottom:7px}
+.film .fn{position:absolute;top:-1px;left:22px;transform:translateY(-100%);font:500 11px/1 var(--mono);letter-spacing:.18em;color:var(--amber);padding-bottom:8px}
+.film .fn2{left:auto;right:22px;color:var(--muted)}
+.film video,.film .poster{width:100%;aspect-ratio:1760/900;background:#170b0c url(assets/hero.jpg) center/cover}
+.legend{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 28px;font-size:15px}
+.legend li{border-top:1px solid var(--rim-soft);padding:8px 0;color:var(--muted)}
+.legend b{display:block;font:500 11px/1.4 var(--mono);letter-spacing:.18em;color:var(--amber);text-transform:uppercase;margin-bottom:2px}
+@media (max-width:860px){.legend{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.legend{grid-template-columns:minmax(0,1fr)}}
+
+/* sections */
+section{padding:clamp(80px,13vh,140px) 0 0}
+.sec-head{display:grid;grid-template-columns:auto 1fr;gap:10px 26px;align-items:end;margin-bottom:clamp(30px,5vh,48px)}
+.sec-head .no{font:900 clamp(54px,8vw,104px)/.8 var(--display);font-stretch:125%;color:transparent;-webkit-text-stroke:1px rgba(255,150,130,.5)}
+.sec-head h2{margin:0;font:700 clamp(26px,3.4vw,42px)/1.08 var(--display);letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance}
+.sec-head p{grid-column:2;margin:0;color:var(--muted);max-width:60ch}
+@media (max-width:640px){.sec-head{grid-template-columns:minmax(0,1fr)}.sec-head p{grid-column:1}}
+
+/* what moves */
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px}
+.card{position:relative;background:linear-gradient(180deg,rgba(44,21,23,.7),rgba(33,16,17,.7));border:1px solid var(--rim-soft);border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card .tag{font:500 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:12px}
+.card .tag b{color:var(--amber);font-weight:500}
+.card h3{margin:0;font:700 21px/1.15 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.card p{margin:0;color:var(--muted);font-size:16.5px}
+.c-tray{grid-column:span 5;grid-row:span 2}
+.c-line{grid-column:span 7}
+.c-head{grid-column:span 7}
+.c-peg{grid-column:span 5}
+.c-comp{grid-column:span 12}
+@media (max-width:980px){.c-tray,.c-line,.c-head,.c-peg{grid-column:span 12;grid-row:auto}}
+.stage{position:relative;border-radius:8px;background:#0e0607;border:1px solid var(--rim-soft);display:grid;place-items:center;padding:16px;overflow:hidden}
+.c-tray .stage img{width:min(100%,330px);height:auto}
+.c-line .stage{padding:8px}.c-line .stage img{width:min(100%,380px);height:auto;margin:0 auto}
+.seg{display:inline-flex;border:1px solid var(--rim);border-radius:6px;overflow:hidden;align-self:flex-start}
+.seg button{all:unset;cursor:pointer;font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;padding:9px 12px;color:var(--muted)}
+.seg button[aria-pressed=true]{background:var(--red);color:var(--red-ink)}
+.seg button:focus-visible{outline:2px solid var(--amber);outline-offset:-2px}
+/* mini header */
+.mh{height:52px;display:flex;align-items:center;gap:10px;padding:0 16px;background:#1b0d0e;border-radius:6px 6px 0 0;position:relative;font:600 14px var(--display);letter-spacing:.02em;
+  background-image:repeating-linear-gradient(90deg,rgba(255,150,130,.3) 0 1px,transparent 1px 12px),linear-gradient(var(--red),var(--red));background-repeat:repeat-x,no-repeat;background-size:100% 4px,0 2px;background-position:0 100%,0 100%;animation:fill 8s linear infinite}
+.mh small{font:400 13px var(--serif);color:var(--muted)}
+@keyframes fill{to{background-size:100% 4px,100% 2px}}
+/* mini sidebar */
+.rows{list-style:none;margin:0;padding:8px;background:#110808;border-radius:8px}
+.rows li{position:relative;display:flex;justify-content:space-between;padding:8px 12px;border-radius:8px;font:400 14.5px var(--serif);color:#f0dcd4;cursor:default}
+.rows li small{font:400 11px var(--mono);color:#bf9d94}
+.rows li:after{content:"";position:absolute;right:14px;top:-8px;width:10px;height:17px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='20' viewBox='0 0 12 20'%3E%3Crect x='.5' y='0' width='5' height='19' rx='1.4' fill='%23c79a68'/%3E%3Crect x='6.5' y='0' width='5' height='19' rx='1.4' fill='%238f6a47'/%3E%3Crect x='0' y='6' width='12' height='2.6' rx='1' fill='%239c8f8a'/%3E%3C/svg%3E") center/10px 17px no-repeat;opacity:0;transform:translateY(-3px);transition:opacity .2s,transform .25s}
+.rows li:hover{background:#2a1315}.rows li:hover:after,.rows li.cur:after{opacity:1;transform:none}
+.rows li.cur{background:#431e20;box-shadow:inset 2px 0 var(--red)}
+.rows li.busy{background:radial-gradient(circle,rgba(255,90,71,var(--p)) 0 2.6px,transparent 3.2px) 1px 50%/7px 7px no-repeat;animation:pulse 1.5s ease-in-out infinite}
+.rows li.busy small{color:var(--red)}
+@property --p{syntax:'<number>';inherits:false;initial-value:.9}
+@keyframes pulse{50%{--p:.22}}
+/* mini composer */
+.comp{background:#1c0d0e;border:1px solid var(--rim);border-radius:6px;position:relative;padding:20px 18px 18px;transition:border-color .25s,box-shadow .35s}
+.comp:before,.comp:after{content:"";position:absolute;left:0;right:0;height:6px;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='6'%3E%3Crect x='3' y='1' width='8' height='4' rx='1.2'/%3E%3C/svg%3E") 0 0/14px 6px repeat-x;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='6'%3E%3Crect x='3' y='1' width='8' height='4' rx='1.2'/%3E%3C/svg%3E") 0 0/14px 6px repeat-x;background:var(--red);opacity:.16;transition:opacity .3s}
+.comp:before{top:3px}.comp:after{bottom:3px}
+.comp:focus-within{border-color:var(--red);box-shadow:0 0 0 3px rgba(255,90,71,.15),0 0 26px rgba(255,90,71,.2)}
+.comp:focus-within:before,.comp:focus-within:after{opacity:.7}
+.comp input{all:unset;display:block;width:100%;font:400 17px var(--serif);color:var(--text)}
+.comp input::placeholder{color:var(--faint)}
+.comp .meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font:400 12px var(--mono);color:var(--muted)}
+.comp .go{display:grid;place-items:center;width:32px;height:32px;border-radius:6px;background:var(--red);color:var(--red-ink)}
+.comp .go svg{width:16px;height:16px}
+
+/* films */
+.films{display:grid;grid-template-columns:minmax(0,1fr)}
+.reel{position:relative;background:#080303;border:1px solid var(--rim-soft);border-radius:8px;overflow:hidden;box-shadow:0 40px 90px -40px rgba(0,0,0,.9)}
+.reel video{width:100%;aspect-ratio:16/9;background:#170b0c url(assets/demo.jpg) center/cover}
+.reel figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 18px;padding:12px 16px;font:500 11px/1.5 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--rim-soft)}
+.chapters{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.chapters button{all:unset;cursor:pointer;font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;padding:9px 12px;border:1px solid var(--rim);border-radius:6px;color:var(--muted)}
+.chapters button:hover{color:var(--text);border-color:var(--red)}
+.chapters button:focus-visible{outline:2px solid var(--amber)}
+
+/* palette */
+.pal{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:900px){.pal{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.pal{grid-template-columns:minmax(0,1fr)}}
+.sw{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:grid;grid-template-columns:56px 1fr auto;grid-template-areas:"i b c" "i s c";align-items:center;column-gap:14px;width:100%;padding:12px 14px;background:rgba(33,16,17,.7);border:1px solid var(--rim-soft);border-radius:8px;transition:border-color .2s,transform .15s}
+.sw:hover{border-color:var(--red)}.sw:active{transform:translateY(1px)}
+.sw:focus-visible{outline:2px solid var(--amber)}
+.sw i{grid-area:i;display:block;height:44px;border-radius:4px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+.sw b{grid-area:b;font:700 14px/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase}
+.sw span{grid-area:s;font-size:14.5px;color:var(--muted);line-height:1.3}
+.sw code{grid-area:c;font:500 13px var(--mono);color:var(--amber);letter-spacing:.04em}
+.sw em{position:absolute;right:12px;top:8px;font:500 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;font-style:normal;color:var(--red-ink);background:var(--amber);padding:3px 6px;border-radius:3px;opacity:0;transform:translateY(3px);transition:opacity .2s,transform .2s;pointer-events:none}
+.sw.ok em{opacity:1;transform:none}
+.hint{font:400 13px var(--mono);color:var(--muted);margin-top:14px}
+
+/* install */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;counter-reset:s}
+@media (max-width:900px){.steps{grid-template-columns:minmax(0,1fr)}}
+.step{position:relative;border:1px solid var(--rim-soft);border-radius:10px;background:rgba(33,16,17,.7);padding:22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.step .bath{font:500 11px/1 var(--mono);letter-spacing:.2em;color:var(--amber);text-transform:uppercase;display:flex;justify-content:space-between}
+.step h3{margin:0;font:700 22px/1.1 var(--display);text-transform:uppercase}
+.step p{margin:0;color:var(--muted);font-size:16.5px}
+.step .btn{align-self:flex-start;margin-top:auto}
+pre{margin:0;overflow:auto;background:#0d0607;border:1px solid #3a1a1c;border-left:3px solid var(--red);border-radius:4px;padding:16px 18px;font:400 13.5px/1.7 var(--mono);color:#f0dcd4;position:relative}
+pre .p{color:var(--faint)}
+.cli{margin-top:18px}
+.cli .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:12px;font:500 11px var(--mono);letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.copy{all:unset;cursor:pointer;font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;padding:8px 10px;border:1px solid var(--rim);border-radius:6px;color:var(--text)}
+.copy:hover{border-color:var(--red)}.copy:focus-visible{outline:2px solid var(--amber)}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--paper);color:#1d0d0c;font:500 13px var(--mono);padding:12px 18px;border-radius:6px;opacity:0;transition:opacity .25s,transform .25s;z-index:80;pointer-events:none;max-width:calc(100vw - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+footer{margin-top:clamp(90px,14vh,150px);padding:34px 0 60px;border-top:1px solid var(--rim-soft);color:var(--muted);font-size:15px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 28px}
+footer p{margin:0;max-width:62ch}
+
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.js .word span{opacity:1}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<!--SEGS--><svg width='0' height='0' style='position:absolute' aria-hidden='true'><defs><symbol id='dg' viewBox='0 0 46 66'><polygon points='5.6,4 9.6,0 36.4,0 40.4,4 36.4,8 9.6,8'/><polygon points='42,5.6 46,9.6 46,27.4 42,31.4 38,27.4 38,9.6'/><polygon points='42,34.6 46,38.6 46,56.4 42,60.4 38,56.4 38,38.6'/><polygon points='5.6,62 9.6,58 36.4,58 40.4,62 36.4,66 9.6,66'/><polygon points='4,34.6 8,38.6 8,56.4 4,60.4 0,56.4 0,38.6'/><polygon points='4,5.6 8,9.6 8,27.4 4,31.4 0,27.4 0,9.6'/><polygon points='5.6,33 9.6,29 36.4,29 40.4,33 36.4,37 9.6,37'/></symbol><symbol id='d0' viewBox='0 0 46 66'><polygon points='5.6,4 9.6,0 36.4,0 40.4,4 36.4,8 9.6,8'/><polygon points='42,5.6 46,9.6 46,27.4 42,31.4 38,27.4 38,9.6'/><polygon points='42,34.6 46,38.6 46,56.4 42,60.4 38,56.4 38,38.6'/><polygon points='5.6,62 9.6,58 36.4,58 40.4,62 36.4,66 9.6,66'/><polygon points='4,34.6 8,38.6 8,56.4 4,60.4 0,56.4 0,38.6'/><polygon points='4,5.6 8,9.6 8,27.4 4,31.4 0,27.4 0,9.6'/></symbol><symbol id='d1' viewBox='0 0 46 66'><polygon points='42,5.6 46,9.6 46,27.4 42,31.4 38,27.4 38,9.6'/><polygon points='42,34.6 46,38.6 46,56.4 42,60.4 38,56.4 38,38.6'/></symbol><symbol id='d2' viewBox='0 0 46 66'><polygon points='5.6,4 9.6,0 36.4,0 40.4,4 36.4,8 9.6,8'/><polygon points='42,5.6 46,9.6 46,27.4 42,31.4 38,27.4 38,9.6'/><polygon points='5.6,33 9.6,29 36.4,29 40.4,33 36.4,37 9.6,37'/><polygon points='4,34.6 8,38.6 8,56.4 4,60.4 0,56.4 0,38.6'/><polygon points='5.6,62 9.6,58 36.4,58 40.4,62 36.4,66 9.6,66'/></symbol><symbol id='d3' viewBox='0 0 46 66'><polygon points='5.6,4 9.6,0 36.4,0 40.4,4 36.4,8 9.6,8'/><polygon points='42,5.6 46,9.6 46,27.4 42,31.4 38,27.4 38,9.6'/><polygon points='5.6,33 9.6,29 36.4,29 40.4,33 36.4,37 9.6,37'/><polygon points='42,34.6 46,38.6 46,56.4 42,60.4 38,56.4 38,38.6'/><polygon points='5.6,62 9.6,58 36.4,58 40.4,62 36.4,66 9.6,66'/></symbol><symbol id='d4' viewBox='0 0 46 66'><polygon points='4,5.6 8,9.6 8,27.4 4,31.4 0,27.4 0,9.6'/><polygon points='5.6,33 9.6,29 36.4,29 40.4,33 36.4,37 9.6,37'/><polygon points='42,5.6 46,9.6 46,27.4 42,31.4 38,27.4 38,9.6'/><polygon points='42,34.6 46,38.6 46,56.4 42,60.4 38,56.4 38,38.6'/></symbol><symbol id='d5' viewBox='0 0 46 66'><polygon points='5.6,4 9.6,0 36.4,0 40.4,4 36.4,8 9.6,8'/><polygon points='4,5.6 8,9.6 8,27.4 4,31.4 0,27.4 0,9.6'/><polygon points='5.6,33 9.6,29 36.4,29 40.4,33 36.4,37 9.6,37'/><polygon points='42,34.6 46,38.6 46,56.4 42,60.4 38,56.4 38,38.6'/><polygon points='5.6,62 9.6,58 36.4,58 40.4,62 36.4,66 9.6,66'/></symbol><symbol id='d6' viewBox='0 0 46 66'><polygon points='5.6,4 9.6,0 36.4,0 40.4,4 36.4,8 9.6,8'/><polygon points='4,5.6 8,9.6 8,27.4 4,31.4 0,27.4 0,9.6'/><polygon points='5.6,33 9.6,29 36.4,29 40.4,33 36.4,37 9.6,37'/><polygon points='4,34.6 8,38.6 8,56.4 4,60.4 0,56.4 0,38.6'/><polygon points='5.6,62 9.6,58 36.4,58 40.4,62 36.4,66 9.6,66'/><polygon points='42,34.6 46,38.6 46,56.4 42,60.4 38,56.4 38,38.6'/></symbol><symbol id='d7' viewBox='0 0 46 66'><polygon points='5.6,4 9.6,0 36.4,0 40.4,4 36.4,8 9.6,8'/><polygon points='42,5.6 46,9.6 46,27.4 42,31.4 38,27.4 38,9.6'/><polygon points='42,34.6 46,38.6 46,56.4 42,60.4 38,56.4 38,38.6'/></symbol><symbol id='d8' viewBox='0 0 46 66'><polygon points='5.6,4 9.6,0 36.4,0 40.4,4 36.4,8 9.6,8'/><polygon points='42,5.6 46,9.6 46,27.4 42,31.4 38,27.4 38,9.6'/><polygon points='42,34.6 46,38.6 46,56.4 42,60.4 38,56.4 38,38.6'/><polygon points='5.6,62 9.6,58 36.4,58 40.4,62 36.4,66 9.6,66'/><polygon points='4,34.6 8,38.6 8,56.4 4,60.4 0,56.4 0,38.6'/><polygon points='4,5.6 8,9.6 8,27.4 4,31.4 0,27.4 0,9.6'/><polygon points='5.6,33 9.6,29 36.4,29 40.4,33 36.4,37 9.6,37'/></symbol><symbol id='d9' viewBox='0 0 46 66'><polygon points='5.6,4 9.6,0 36.4,0 40.4,4 36.4,8 9.6,8'/><polygon points='42,5.6 46,9.6 46,27.4 42,31.4 38,27.4 38,9.6'/><polygon points='42,34.6 46,38.6 46,56.4 42,60.4 38,56.4 38,38.6'/><polygon points='5.6,62 9.6,58 36.4,58 40.4,62 36.4,66 9.6,66'/><polygon points='4,5.6 8,9.6 8,27.4 4,31.4 0,27.4 0,9.6'/><polygon points='5.6,33 9.6,29 36.4,29 40.4,33 36.4,37 9.6,37'/></symbol></defs></svg><!--/SEGS-->
+
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top" id="top"><span class="lamp"></span>DARKROOM</a>
+    <nav>
+      <a href="#moves">What moves</a><a href="#film">Demo</a><a href="#palette">Palette</a><a href="#install">Install</a>
+      <a class="gh" href="https://github.com/joshsaintjacque/t3code-theme-darkroom"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="eyebrow">A theme for <b>T3 Code</b> · dark · red safelight</div>
+    <h1 class="word" aria-label="Darkroom"><span style="--i:0">D</span><span style="--i:1">a</span><span style="--i:2">r</span><span style="--i:3">k</span><span style="--i:4">r</span><span style="--i:5">o</span><span style="--i:6">o</span><span style="--i:7">m</span></h1>
+    <div class="lede">
+      <div>
+        <p style="font:600 clamp(28px,3.7vw,46px)/1.1 var(--display);letter-spacing:-.01em;color:var(--text);margin:0;text-wrap:balance;max-width:none">Your agent works. <em style="font:italic 400 1.04em/1 var(--serif);color:var(--red)">The print comes up.</em></p>
+        <div class="timer" role="img" aria-label="Seven-segment timer, counting while this page is open">
+          <span class="lbl">in the<br>tray</span>
+          <div class="digits" id="digits"><svg viewBox="0 0 46 66"><use href="#dg" class="gh"/><use href="#d0" class="lit"/></svg><svg viewBox="0 0 46 66"><use href="#dg" class="gh"/><use href="#d0" class="lit"/></svg><span class="col"><i></i><i></i></span><svg viewBox="0 0 46 66"><use href="#dg" class="gh"/><use href="#d0" class="lit"/></svg><svg viewBox="0 0 46 66"><use href="#dg" class="gh"/><use href="#d0" class="lit"/></svg></div>
+        </div>
+      </div>
+      <div>
+        <p>A red-safelight theme for <a href="https://t3.codes">T3 Code</a>. Near-black room, paper-white print, one lamp colour. While a turn runs, a photograph develops in the margin and a timer counts. When it ends, the print is fixed and the room goes still.</p>
+        <div class="ctas">
+          <button class="btn primary" id="copyJson" type="button">Copy theme JSON</button>
+          <a class="btn ghost" href="darkroom.json" download>Download</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="film" role="group" aria-label="Darkroom running in T3 Code">
+    <span class="fn">▶ 12A</span><span class="fn fn2">WORKING · LOOP 30S</span>
+    <video id="hero" src="assets/hero.mp4" poster="assets/hero.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Darkroom while an agent works: the print develops and the timer counts"></video>
+  </div>
+  <ul class="legend">
+    <li><b>Tray</b>The print develops while the turn runs.</li>
+    <li><b>Timer</b>Seven-segment, counts mm:ss.</li>
+    <li><b>Line</b>Wet prints sway and drip.</li>
+    <li><b>Safelight</b>Busy threads glow red.</li>
+  </ul>
+
+  <section id="moves">
+    <div class="sec-head"><span class="no">01</span><h2>What moves, and why</h2><p>Every animation is tied to real app state. If nothing is running, nothing moves. Flip the switches below to see each piece working and at rest.</p></div>
+    <div class="grid">
+      <article class="card c-tray">
+        <div class="tag"><span><b>A</b> · The tray</span><span>margin left</span></div>
+        <h3>A print develops</h3>
+        <p>On wide windows the left margin is a developing tray. When a turn starts a fresh print goes in: sky first, then the hills, then the deep blacks. Below it a seven-segment timer counts the seconds. At rest the print is fixed and the timer waits at 00:00.</p>
+        <div class="seg" role="group" aria-label="Tray state"><button type="button" aria-pressed="true" data-img="trayimg" data-src="assets/svg/tray.svg">Working</button><button type="button" aria-pressed="false" data-img="trayimg" data-src="assets/svg/tray-still.svg">Idle</button></div>
+        <div class="stage"><img id="trayimg" src="assets/svg/tray.svg" alt="Developing tray with a print coming up and a timer counting" width="330" height="505"></div>
+      </article>
+      <article class="card c-line">
+        <div class="tag"><span><b>B</b> · The line</span><span>margin right</span></div>
+        <h3>Wet prints hang to dry</h3>
+        <p>Finished prints hang on a line in the right margin. While work runs they sway slowly on their pegs and drip. Idle, they hang straight and dry.</p>
+        <div class="seg" role="group" aria-label="Line state"><button type="button" aria-pressed="true" data-img="lineimg" data-src="assets/svg/line.svg">Working</button><button type="button" aria-pressed="false" data-img="lineimg" data-src="assets/svg/line-still.svg">Idle</button></div>
+        <div class="stage"><img id="lineimg" src="assets/svg/line.svg" alt="Two clotheslines with photographic prints swaying and dripping" width="380" height="581"></div>
+      </article>
+      <article class="card c-head">
+        <div class="tag"><span><b>C</b> · Header ruler</span><span>chat header</span></div>
+        <h3>The ruler</h3>
+        <p>The foot of the header is a ruler. During a turn a glint of safelight travels along it, with no promise of when it will finish. When the turn ends the ruler flashes ivory once.</p>
+        <div class="mh">Sync client retries <small>t3code · main</small></div>
+      </article>
+      <article class="card c-peg">
+        <div class="tag"><span><b>D</b> · Pegs and dots</span><span>sidebar</span></div>
+        <h3>Threads hang from pegs</h3>
+        <p>Point at a thread and a clothes-peg clips onto it. A busy background thread gets a pulsing safelight dot.</p>
+        <ul class="rows"><li class="cur">Polish onboarding flow <small>now</small></li><li class="busy">&nbsp;&nbsp;Fix websocket reconnect <small>working</small></li><li>Refactor composer state <small>1d</small></li><li>Cache warmup job <small>3d</small></li></ul>
+      </article>
+      <article class="card c-comp">
+        <div class="tag"><span><b>E</b> · Composer</span><span>click to focus</span></div>
+        <h3>A strip of film, lit on focus</h3>
+        <p>The composer is a frame of film. Focus it and the safelight comes up: the border warms, a soft glow rises and the sprocket holes light.</p>
+        <div class="comp"><input type="text" placeholder="Ask anything, @ to add files, / for commands" aria-label="Try the composer"><div class="meta"><span>Opus 5.5 · Full access · main</span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span></div></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="film">
+    <div class="sec-head"><span class="no">02</span><h2>The walkthrough</h2><p>About a minute: at rest, compose, a turn starts, the print comes up, turn done, hover, menus, and the narrow-window fallback.</p></div>
+    <div class="films">
+      <figure class="reel" style="margin:0">
+        <video id="demo" src="assets/demo.mp4" poster="assets/demo.jpg" controls muted playsinline preload="none" aria-label="Darkroom walkthrough"></video>
+        <figcaption><span>▶ Darkroom · walkthrough</span><span>1920 × 1080</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="palette">
+    <div class="sec-head"><span class="no">03</span><h2>Palette</h2><p>One hue on near-black. Red is the lamp, paper is the print, amber is the enlarger. Click a swatch to copy its hex.</p></div>
+    <ul class="pal">
+<!--PAL--><li><button type='button' class='sw' data-hex='#170B0C' aria-label='Copy Canvas #170B0C'><i style='background:#170B0C'></i><b>Canvas</b><span>the room</span><code>#170B0C</code><em>copied</em></button></li>
+<li><button type='button' class='sw' data-hex='#110808' aria-label='Copy Sidebar #110808'><i style='background:#110808'></i><b>Sidebar</b><span>further from the lamp</span><code>#110808</code><em>copied</em></button></li>
+<li><button type='button' class='sw' data-hex='#211011' aria-label='Copy Surface #211011'><i style='background:#211011'></i><b>Surface</b><span>composer, cards</span><code>#211011</code><em>copied</em></button></li>
+<li><button type='button' class='sw' data-hex='#2C1517' aria-label='Copy Raised #2C1517'><i style='background:#2C1517'></i><b>Raised</b><span>menus, hover</span><code>#2C1517</code><em>copied</em></button></li>
+<li><button type='button' class='sw' data-hex='#4A2326' aria-label='Copy Border #4A2326'><i style='background:#4A2326'></i><b>Border</b><span>tray rims</span><code>#4A2326</code><em>copied</em></button></li>
+<li><button type='button' class='sw' data-hex='#F4E4DD' aria-label='Copy Text #F4E4DD'><i style='background:#F4E4DD'></i><b>Text</b><span>paper under safelight</span><code>#F4E4DD</code><em>copied</em></button></li>
+<li><button type='button' class='sw' data-hex='#C9A9A0' aria-label='Copy Muted #C9A9A0'><i style='background:#C9A9A0'></i><b>Muted</b><span>captions, meta</span><code>#C9A9A0</code><em>copied</em></button></li>
+<li><button type='button' class='sw' data-hex='#FF5A47' aria-label='Copy Safelight #FF5A47'><i style='background:#FF5A47'></i><b>Safelight</b><span>accent and focus</span><code>#FF5A47</code><em>copied</em></button></li>
+<li><button type='button' class='sw' data-hex='#1A0707' aria-label='Copy On safelight #1A0707'><i style='background:#1A0707'></i><b>On safelight</b><span>text on accent</span><code>#1A0707</code><em>copied</em></button></li>
+<li><button type='button' class='sw' data-hex='#DCC3B6' aria-label='Copy Print paper #DCC3B6'><i style='background:#DCC3B6'></i><b>Print paper</b><span>your messages</span><code>#DCC3B6</code><em>copied</em></button></li>
+<li><button type='button' class='sw' data-hex='#1D0D0C' aria-label='Copy Print ink #1D0D0C'><i style='background:#1D0D0C'></i><b>Print ink</b><span>text on paper</span><code>#1D0D0C</code><em>copied</em></button></li>
+<li><button type='button' class='sw' data-hex='#FFB347' aria-label='Copy Lamp amber #FFB347'><i style='background:#FFB347'></i><b>Lamp amber</b><span>warnings, links</span><code>#FFB347</code><em>copied</em></button></li>
+<li><button type='button' class='sw' data-hex='#A9CFD6' aria-label='Copy Fixer silver #A9CFD6'><i style='background:#A9CFD6'></i><b>Fixer silver</b><span>updates</span><code>#A9CFD6</code><em>copied</em></button></li>
+<li><button type='button' class='sw' data-hex='#FF8FA0' aria-label='Copy Error pink #FF8FA0'><i style='background:#FF8FA0'></i><b>Error pink</b><span>never the accent</span><code>#FF8FA0</code><em>copied</em></button></li>
+<li><button type='button' class='sw' data-hex='#0D0607' aria-label='Copy Deep tray #0D0607'><i style='background:#0D0607'></i><b>Deep tray</b><span>code blocks</span><code>#0D0607</code><em>copied</em></button></li><!--/PAL-->
+    </ul>
+    <p class="hint">Contrast: text on canvas 15.6:1 · muted 8.9:1 · print ink on paper 11.2:1 · safelight button text 6.3:1.</p>
+  </section>
+
+  <section id="install">
+    <div class="sec-head"><span class="no">04</span><h2>Install</h2><p>Three baths. One JSON file, nothing else to fetch.</p></div>
+    <div class="steps">
+      <div class="step"><div class="bath"><span>Bath 1 · Developer</span><span>10 s</span></div><h3>Copy the theme</h3><p>Copies <code>darkroom.json</code> to your clipboard. Or download the file.</p><button class="btn primary" id="copyJson2" type="button">Copy theme JSON</button></div>
+      <div class="step"><div class="bath"><span>Bath 2 · Stop</span><span>20 s</span></div><h3>Add it in T3 Code</h3><p>Open <b>Settings › Appearance › Add theme</b>, paste the JSON (or choose the file) and add it.</p><a class="btn ghost" href="darkroom.json" download>Download .json</a></div>
+      <div class="step"><div class="bath"><span>Bath 3 · Fix</span><span>5 min</span></div><h3>Pick Darkroom</h3><p>Choose Darkroom in the theme list. Start a turn and watch the tray.</p></div>
+    </div>
+    <div class="cli">
+      <div class="row"><span>Or from the terminal</span><button class="copy" type="button" data-copy="cli">Copy</button></div>
+<pre id="cli"><span class="p">$</span> curl -fsSL -o darkroom.json https://joshsaintjacque.github.io/t3code-theme-darkroom/darkroom.json
+<span class="p">$</span> ~/.t3/bin/t3 theme set darkroom.json</pre>
+    </div>
+    <p class="hint">Tested on T3 Code 0.1.11 (nightly). <code>t3 theme set</code> sets the theme for every client connected to that environment.</p>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Darkroom is an independent, community-made theme. It is not affiliated with, endorsed by or sponsored by T3 or the makers of T3 Code. MIT licensed.</p>
+    <p><a href="https://github.com/joshsaintjacque/t3code-theme-darkroom">Source on GitHub</a> · built with <code>source/build.py</code></p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var toast = document.getElementById('toast'), tt;
+  function say(m){ toast.textContent = m; toast.classList.add('on'); clearTimeout(tt); tt = setTimeout(function(){ toast.classList.remove('on'); }, 2200); }
+  function copy(text){
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function(res, rej){ var t = document.createElement('textarea'); t.value = text; t.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(t); t.select();
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e) {} t.remove(); ok ? res() : rej(); });
+  }
+  // prefetch so the click can copy without losing the user gesture (Safari)
+  var jsonP = fetch('darkroom.json').then(function(r){ if(!r.ok) throw 0; return r.text(); });
+  jsonP.catch(function(){});
+  function copyJson(){
+    var done = function(){ say('Theme JSON copied. Paste it into Settings \u203a Appearance \u203a Add theme.'); };
+    var fail = function(){ say('Could not copy. Use Download instead.'); };
+    if (window.ClipboardItem && navigator.clipboard && navigator.clipboard.write && window.isSecureContext) {
+      navigator.clipboard.write([new ClipboardItem({'text/plain': jsonP.then(function(t){ return new Blob([t], {type:'text/plain'}); })})]).then(done, fail);
+    } else { jsonP.then(copy).then(done, fail); }
+  }
+  document.getElementById('copyJson').onclick = copyJson;
+  document.getElementById('copyJson2').onclick = copyJson;
+  document.querySelectorAll('[data-copy]').forEach(function(b){ b.onclick = function(){
+    var t = document.getElementById(b.dataset.copy).textContent.replace(/^\$ /gm,''); copy(t).then(function(){ say('Commands copied.'); }, function(){ say('Could not copy.'); }); }; });
+  document.querySelectorAll('.sw').forEach(function(b){ b.onclick = function(){
+    copy(b.dataset.hex).then(function(){ b.classList.add('ok'); say(b.dataset.hex + ' copied'); setTimeout(function(){ b.classList.remove('ok'); }, 1200); }, function(){ say('Could not copy.'); }); }; });
+
+  // state toggles for the two SVG stages; reduced motion starts at rest
+  document.querySelectorAll('.seg').forEach(function(seg){
+    var btns = seg.querySelectorAll('button');
+    btns.forEach(function(b){ b.onclick = function(){
+      btns.forEach(function(o){ o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      document.getElementById(b.dataset.img).src = b.dataset.src; }; });
+    if (reduce) { btns[1].click(); }
+  });
+
+  // hero timer: counts while the page is open
+  var uses = document.querySelectorAll('#digits svg .lit');
+  var t0 = Date.now();
+  function tick(){
+    var s = Math.floor((Date.now() - t0) / 1000) % 3600, m = Math.floor(s / 60), x = s % 60;
+    var d = [Math.floor(m / 10), m % 10, Math.floor(x / 10), x % 10];
+    for (var i = 0; i < 4; i++) uses[i].setAttribute('href', '#d' + d[i]);
+  }
+  if (!reduce) setInterval(tick, 500);
+
+  var hero = document.getElementById('hero');
+  if (reduce && hero) { hero.removeAttribute('autoplay'); hero.pause(); }
+})();
+</script>
+</body>
+</html>
